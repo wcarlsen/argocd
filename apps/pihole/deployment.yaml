@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pihole
+  name: pihole
+  namespace: pihole
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "true"
+    spec:
+      containers:
+      - image: pihole/pihole:latest
+        name: pihole
+        env:
+        - name: TZ
+          value: Europe/Copenhagen
+        - name: DNS1
+          value: 1.1.1.1
+        - name: DNS2
+          value: 1.0.0.1
+        - name: ServerIP
+          value: 192.168.1.30
+        - name: VIRTUAL_HOST
+          value: 192.168.1.30
+        # - name: WEBPASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pihole
+        #       key: WEBPASSWORD
+        - name: DNSMASQ_LISTENING
+          value: all
+        ports:
+        - containerPort: 80
+          name: web
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        - name: dchp
+          containerPort: 67
+          protocol: UDP
+        volumeMounts:
+        - mountPath: /etc/pihole/custom.list
+          subPath: custom.list
+          name: local-dns
+      volumes:
+      - name: local-dns
+        configMap:
+          name: local-dns
+          items:
+          - key: custom.list
+            path: custom.list

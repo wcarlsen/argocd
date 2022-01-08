@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: local-dns
+  namespace: pihole
+data:
+  custom.list: |
+    192.168.1.30 k8s.lan
+    192.168.1.240 pihole.lan
+    192.168.1.166 proxmox.lan
