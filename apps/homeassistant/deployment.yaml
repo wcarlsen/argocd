@@ -18,13 +18,13 @@ spec:
       annotations:
         chaos.alpha.kubernetes.io/enabled: "true"
     spec:
+      hostNetwork: true
       containers:
       - image: ghcr.io/home-assistant/home-assistant:stable
         name: homeassistant
         env:
         - name: TZ
           value: Europe/Copenhagen
-        hostNetwork: true
         # ports:
         # - containerPort: 80
         #   name: web
