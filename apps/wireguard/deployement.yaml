@@ -25,14 +25,21 @@ spec:
         - name: PEERS
           value: "1"
         - name: PEERDNS
-          value: "192.168.1.240"
+          value: "192.168.1.1"
+        - name: SERVERPORT
+          value: "51820"
         - name: ALLOWEDIPS
           valueFrom:
             secretKeyRef:
               name: wireguard
               key: ALLOWEDIPS
+        - name: SERVERURL
+          valueFrom:
+            secretKeyRef:
+              name: wireguard
+              key: SERVERURL
         - name: INTERNAL_SUBNET
-          value: "192.168.1.1"
+          value: "192.168.1.0"
         securityContext:
           capabilities:
             add:
