@@ -29,7 +29,7 @@ spec:
         - name: ALLOWEDIPS
           valueFrom:
             secretKeyRef:
-              name: pihole
+              name: wireguard
               key: ALLOWEDIPS
         - name: INTERNAL_SUBNET
           value: "192.168.1.1"
