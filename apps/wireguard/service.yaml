@@ -12,5 +12,5 @@ spec:
   ports:
   - name: wireguard-udp
     protocol: UDP
-    port: 37
-    targetPort: udp
+    port: 51820
+    targetPort: 51820
