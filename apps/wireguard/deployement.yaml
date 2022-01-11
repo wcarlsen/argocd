@@ -27,7 +27,7 @@ spec:
         - name: PEERDNS
           value: "192.168.1.1"
         - name: SERVERPORT
-          value: "51820"
+          value: "37"
         - name: ALLOWEDIPS
           valueFrom:
             secretKeyRef:
@@ -47,7 +47,7 @@ spec:
               - SYS_MODULE
           privileged: true
         ports:
-        - containerPort: 51820
+        - containerPort: 37
           protocol: UDP
           name: udp
         volumeMounts:
