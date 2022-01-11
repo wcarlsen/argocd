@@ -47,7 +47,7 @@ spec:
               - SYS_MODULE
           privileged: true
         ports:
-        - containerPort: 37
+        - containerPort: 51820
           protocol: UDP
           name: udp
         volumeMounts:
