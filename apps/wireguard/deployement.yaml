@@ -51,7 +51,7 @@ spec:
       volumes:
       - name: config
         persistentVolumeClaim:
-          claimName: wireguard-config
+          claimName: wireguard
       - name: host
         hostPath:
           path: /lib/modules
