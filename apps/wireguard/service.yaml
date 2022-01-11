@@ -14,3 +14,6 @@ spec:
     protocol: UDP
     port: 51820
     targetPort: 51820
+  # externalTrafficPolicy must be Local to preserve source IP
+  # https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  externalTrafficPolicy: Local
