@@ -66,12 +66,12 @@ spec:
           mountPath: "/etc/nginx"
           readOnly: true
       volumes:
-      - name: nginx-conf
-        configMap:
-          name: nginx
-          items:
-          - key: nginx.conf
-            path: nginx.conf
+      # - name: nginx-conf
+      #   configMap:
+      #     name: nginx
+      #     items:
+      #     - key: nginx.conf
+      #       path: nginx.conf
       - name: certs
         secret:
           secretName: nginx-certs
