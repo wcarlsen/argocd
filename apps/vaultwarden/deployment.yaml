@@ -63,7 +63,7 @@ spec:
         #   subPath: vaultwarden.local.lan.conf
         #   name: nginx
         - name: certs
-          mountPath: "/etc/nginx"
+          mountPath: "/etc/nginx/ssl"
           readOnly: true
       volumes:
       # - name: nginx
