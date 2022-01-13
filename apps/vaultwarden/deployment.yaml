@@ -35,15 +35,15 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
-          name: nginx
-        - name: foo
+          name: nginx-conf
+        - name: certs
           mountPath: "/etc/nginx"
           readOnly: true
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: vaultwarden
-      - name: nginx
+      - name: nginx-conf
         configMap:
           name: nginx
           items:
