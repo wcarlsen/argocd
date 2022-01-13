@@ -8,7 +8,7 @@
    entryPoints:
    - https
    routes:
-   - match: Host(`wcarlsen.dk`)
+   - match: Host(`wcarlsen.duckdns.org`)
      kind: Rule
      services:
      - name: vaultwarden
