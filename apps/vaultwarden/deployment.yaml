@@ -27,7 +27,28 @@ spec:
         volumeMounts:
         - name: data
           mountPath: "/data"
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 443
+          name: websecure
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          name: nginx
+        - name: foo
+          mountPath: "/etc/nginx"
+          readOnly: true
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: vaultwarden
+      - name: nginx
+        configMap:
+          name: nginx
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+      - name: certs
+        secret:
+          secretName: nginx-certs
