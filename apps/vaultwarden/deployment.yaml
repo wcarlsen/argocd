@@ -59,19 +59,19 @@ spec:
         - containerPort: 443
           name: websecure
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d/nginx.conf
-          subPath: nginx.conf
-          name: nginx-conf
+        - mountPath: /etc/nginx/sites-available/vaultwarden.local.lan.conf
+          subPath: vaultwarden.local.lan.conf
+          name: nginx
         - name: certs
           mountPath: "/etc/nginx"
           readOnly: true
       volumes:
-      - name: nginx-conf
+      - name: nginx
         configMap:
           name: nginx
           items:
-          - key: nginx.conf
-            path: nginx.conf
+          - key: vaultwarden.local.lan.conf
+            path: vaultwarden.local.lan.conf
       - name: certs
         secret:
           secretName: nginx-certs

@@ -5,7 +5,7 @@ metadata:
   name: nginx
   namespace: vaultwarden
 data:
-  nginx.conf: |
+  vaultwarden.local.lan.conf: |
     server {
       listen *:443 ssl http2;
       server_name vaultwarden.local.lan;
