@@ -21,6 +21,9 @@ spec:
       containers:
       - image: vaultwarden/server:latest
         name: vaultwarden
+        env:
+        - name: SIGNUPS_ALLOWED
+          value: false
         ports:
         - containerPort: 80
           name: web
