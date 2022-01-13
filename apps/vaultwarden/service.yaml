@@ -13,3 +13,18 @@ spec:
   - name: nginx
     port: 443
     targetPort: websecure
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vaultwarden
+  namespace: vaultwarden
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: vaultwarden
