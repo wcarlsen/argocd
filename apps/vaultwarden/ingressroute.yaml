@@ -8,7 +8,7 @@
    entryPoints:
    - https
    routes:
-   - match: Host(`vaultwarden.wcarlsen.dk`)
+   - match: Host(`wcarlsen.dk`)
      kind: Rule
      services:
      - name: vaultwarden
