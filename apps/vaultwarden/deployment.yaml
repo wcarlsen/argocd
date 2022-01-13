@@ -27,22 +27,45 @@ spec:
         volumeMounts:
         - name: data
           mountPath: "/data"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: vaultwarden
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: vaultwarden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "true"
+    spec:
+      containers:
       - image: nginx:latest
         name: nginx
         ports:
         - containerPort: 443
           name: websecure
-        # volumeMounts:
-        # - mountPath: /etc/nginx/nginx.conf
-        #   subPath: nginx.conf
-        #   name: nginx-conf
-        # - name: certs
-        #   mountPath: "/etc/nginx"
-        #   readOnly: true
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          name: nginx-conf
+        - name: certs
+          mountPath: "/etc/nginx"
+          readOnly: true
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: vaultwarden
       - name: nginx-conf
         configMap:
           name: nginx
