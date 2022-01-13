@@ -56,11 +56,11 @@ spec:
       - image: nginx:latest
         name: nginx
         ports:
-        - containerPort: 80
-          name: web
+        - containerPort: 443
+          name: websecure
         volumeMounts:
-        - mountPath: /etc/nginx/sites-enabled/vaultwarden
-          subPath: vaultwarden
+        - mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
           name: nginx
         - name: certs
           mountPath: "/etc/nginx/ssl"
@@ -70,8 +70,8 @@ spec:
         configMap:
           name: nginx
           items:
-          - key: vaultwarden
-            path: vaultwarden
+          - key: nginx.conf
+            path: nginx.conf
       - name: certs
         secret:
           secretName: nginx-certs
