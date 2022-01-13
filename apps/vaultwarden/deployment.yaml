@@ -59,9 +59,9 @@ spec:
         - containerPort: 443
           name: websecure
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d/nginx.conf
-          subPath: nginx.conf
-          name: nginx-conf
+        # - mountPath: /etc/nginx/conf.d/nginx.conf
+        #   subPath: nginx.conf
+        #   name: nginx-conf
         - name: certs
           mountPath: "/etc/nginx"
           readOnly: true
