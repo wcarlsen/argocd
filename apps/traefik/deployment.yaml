@@ -29,6 +29,7 @@ spec:
             - --metrics.prometheus
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
+            - --entrypoints.web.http.redirections.entrypoint.scheme=https
             - --providers.kubernetescrd
             - --certificatesresolvers.default.acme.tlschallenge
             - --certificatesresolvers.default.acme.email=carlsenwilli@gmail.com
