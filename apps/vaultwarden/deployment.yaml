@@ -56,8 +56,8 @@ spec:
       - image: nginx:latest
         name: nginx
         ports:
-        - containerPort: 443
-          name: websecure
+        - containerPort: 80
+          name: web
         volumeMounts:
         - mountPath: /etc/nginx/sites-enabled/vaultwarden
           subPath: vaultwarden

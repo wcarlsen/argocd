@@ -12,4 +12,4 @@ spec:
   ports:
   - name: nginx
     port: 443
-    targetPort: websecure
+    targetPort: web
