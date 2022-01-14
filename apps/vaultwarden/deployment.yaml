@@ -101,6 +101,10 @@ spec:
       containers:
       - image: alpine:latest
         name: vaultwarden-backup
+        command:
+        - "/bin/sh"
+        - "-c"
+        - "while true; do sleep 30; done;"
         volumeMounts:
         - name: data
           mountPath: "/data"
