@@ -78,42 +78,75 @@ spec:
         secret:
           secretName: nginx-certs
 
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: vaultwarden-backup
+#   name: vaultwarden-backup
+#   namespace: vaultwarden
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: vaultwarden-backup
+#   template:
+#     metadata:
+#       labels:
+#         app: vaultwarden-backup
+#       # annotations:
+#       #   chaos.alpha.kubernetes.io/enabled: "true"
+#     spec:
+#       containers:
+#       - image: alpine:latest
+#         name: vaultwarden-backup
+#         command:
+#         - "/bin/sh"
+#         - "-c"
+#         - "while true; do sleep 30; done;"
+#         volumeMounts:
+#         - name: data
+#           mountPath: "/data"
+#         - name: data-backup
+#           mountPath: "/data-backup"
+#       volumes:
+#       - name: data
+#         persistentVolumeClaim:
+#           claimName: vaultwarden
+#       - name: data-backup
+#         persistentVolumeClaim:
+#           claimName: vaultwarden-backup
+
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: CronJob
 metadata:
-  labels:
-    app: vaultwarden-backup
   name: vaultwarden-backup
-  namespace: vaultwarden
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: vaultwarden-backup
-  template:
-    metadata:
-      labels:
-        app: vaultwarden-backup
-      # annotations:
-      #   chaos.alpha.kubernetes.io/enabled: "true"
+  schedule: "* * * * *"
+  jobTemplate:
     spec:
-      containers:
-      - image: alpine:latest
-        name: vaultwarden-backup
-        command:
-        - "/bin/sh"
-        - "-c"
-        - "while true; do sleep 30; done;"
-        volumeMounts:
-        - name: data
-          mountPath: "/data"
-        - name: data-backup
-          mountPath: "/data-backup"
-      volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: vaultwarden
-      - name: data-backup
-        persistentVolumeClaim:
-          claimName: vaultwarden-backup
+      template:
+        spec:
+          containers:
+          - name: vaultwarden-backup
+            image: alpine:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - "apk update && apk add --no-cache sqlite && sqlite3 /data/db.sqlite3  \"VACUUM INTO '/data-backup/db-$(date '+%Y%m%d-%H%M').sqlite3'\""
+            volumeMounts:
+            - name: data
+              mountPath: "/data"
+            - name: data-backup
+              mountPath: "/data-backup"
+          restartPolicy: OnFailure
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: vaultwarden
+          - name: data-backup
+            persistentVolumeClaim:
+              claimName: vaultwarden-backup
