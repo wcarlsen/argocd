@@ -123,6 +123,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: vaultwarden-backup
+  namespace: vaultwarden
 spec:
   schedule: "* * * * *"
   jobTemplate:
