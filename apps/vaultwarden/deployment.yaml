@@ -30,16 +30,10 @@ spec:
         volumeMounts:
         - name: data
           mountPath: "/data"
-        - name: data-backup
-          mountPath: "/data-backup"
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: vaultwarden
-      - name: data-backup
-        persistentVolumeClaim:
-          claimName: vaultwarden-backup
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -110,10 +104,12 @@ spec:
         volumeMounts:
         - name: data
           mountPath: "/data"
+        - name: data-backup
+          mountPath: "/data-backup"
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: vaultwarden
-      - name: data
+      - name: data-backup
         persistentVolumeClaim:
-          claimName: vaultwarden
+          claimName: vaultwarden-backup
