@@ -83,3 +83,37 @@ spec:
       - name: certs
         secret:
           secretName: nginx-certs
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vaultwarden-backup
+  name: vaultwarden-backup
+  namespace: vaultwarden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden-backup
+  template:
+    metadata:
+      labels:
+        app: vaultwarden-backup
+      # annotations:
+      #   chaos.alpha.kubernetes.io/enabled: "true"
+    spec:
+      containers:
+      - image: alpine:latest
+        name: vaultwarden-backup
+        volumeMounts:
+        - name: data
+          mountPath: "/data"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: vaultwarden
+      - name: data
+        persistentVolumeClaim:
+          claimName: vaultwarden
