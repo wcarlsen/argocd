@@ -78,46 +78,6 @@ spec:
         secret:
           secretName: nginx-certs
 
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   labels:
-#     app: vaultwarden-backup
-#   name: vaultwarden-backup
-#   namespace: vaultwarden
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: vaultwarden-backup
-#   template:
-#     metadata:
-#       labels:
-#         app: vaultwarden-backup
-#       # annotations:
-#       #   chaos.alpha.kubernetes.io/enabled: "true"
-#     spec:
-#       containers:
-#       - image: alpine:latest
-#         name: vaultwarden-backup
-#         command:
-#         - "/bin/sh"
-#         - "-c"
-#         - "while true; do sleep 30; done;"
-#         volumeMounts:
-#         - name: data
-#           mountPath: "/data"
-#         - name: data-backup
-#           mountPath: "/data-backup"
-#       volumes:
-#       - name: data
-#         persistentVolumeClaim:
-#           claimName: vaultwarden
-#       - name: data-backup
-#         persistentVolumeClaim:
-#           claimName: vaultwarden-backup
-
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -125,7 +85,7 @@ metadata:
   name: vaultwarden-backup
   namespace: vaultwarden
 spec:
-  schedule: "* * * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       template:
