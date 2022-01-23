@@ -16,7 +16,7 @@ spec:
       labels:
         app: pihole
       annotations:
-        chaos.alpha.kubernetes.io/enabled: "true"
+        # chaos.alpha.kubernetes.io/enabled: "true"
     spec:
       containers:
       - image: pihole/pihole:latest
