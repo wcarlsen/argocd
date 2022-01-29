@@ -30,8 +30,8 @@ spec:
             - --entrypoints.web.address=:8000
             - --entrypoints.websecure.address=:4443
             - --entrypoints.web.http.redirections.entrypoint.scheme=https
-            --entrypoints.web.http.redirections.entryPoint.to=websecure
-            --entrypoints.web.http.redirections.entrypoint.permanent=true
+            - --entrypoints.web.http.redirections.entryPoint.to=websecure
+            - --entrypoints.web.http.redirections.entrypoint.permanent=true
             - --providers.kubernetescrd
             # - --certificatesresolvers.default.acme.tlschallenge
             # - --certificatesresolvers.default.acme.email=carlsenwilli@gmail.com
