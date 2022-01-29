@@ -6,7 +6,7 @@
    namespace: smokeping
  spec:
    entrypoints:
-   - https
+   - websecure
    routes:
    - match: Host(`smokeping.local.lan`)
      kind: Rule
