@@ -6,7 +6,7 @@
    namespace: vaultwarden
  spec:
    routes:
-   - match: Host(`vaultwarden.local.web`)
+   - match: Host(`vaultwarden.web.lan`)
      kind: Rule
      services:
      - name: vaultwarden

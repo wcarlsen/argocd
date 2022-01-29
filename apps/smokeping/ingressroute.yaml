@@ -6,7 +6,7 @@
    namespace: smokeping
  spec:
    routes:
-   - match: Host(`smokeping.local.web`)
+   - match: Host(`smokeping.web.lan`)
      kind: Rule
      services:
      - name: smokeping

@@ -6,10 +6,10 @@ metadata:
   namespace: pihole
 data:
   custom.list: |
-    192.168.1.30 k8s.local.lan
-    192.168.1.240 pihole.local.lan
-    192.168.1.166 proxmox.local.lan
-    192.168.1.124 server.local.lan
+    192.168.1.30 k8s.server.lan
+    192.168.1.240 pihole.server.lan
+    192.168.1.166 proxmox.server.lan
+    192.168.1.124 server.server.lan
 
   custom-dns.conf: |
-    address=/local.web/192.168.1.242
+    address=/web.lan/192.168.1.242

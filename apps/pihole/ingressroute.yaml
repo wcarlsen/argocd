@@ -6,7 +6,7 @@
    namespace: pihole
  spec:
    routes:
-   - match: Host(`pihole.local.web`)
+   - match: Host(`pihole.web.lan`)
      kind: Rule
      services:
      - name: pihole
