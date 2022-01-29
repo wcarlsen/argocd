@@ -67,7 +67,7 @@ spec:
             path: custom.list
        - name: wildcard-dns
         configMap:
-          name: wildcard-dns
+          name: local-dns
           items:
           - key: custom-dns.conf
             path: custom-dns.conf
