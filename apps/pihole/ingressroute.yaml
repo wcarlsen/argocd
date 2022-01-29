@@ -5,10 +5,10 @@
    name: pihole
    namespace: pihole
  spec:
-   routes:
-   - match: Host(`pihole.web.lan`)
-     kind: Rule
-     services:
-     - name: pihole
-       port: 80
-   tls: {}
+  routes:
+  - match: Host(`pihole.web.lan`)
+    kind: Rule
+    services:
+    - name: pihole
+      port: 80
+  tls: {}
