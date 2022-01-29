@@ -6,7 +6,7 @@
    namespace: argocd
  spec:
    routes:
-   - match: Host(`argocd.web.lan`)
+   - match: HostSNI(`argocd.web.lan`)
      services:
      - name: argocd-server
        port: 443
