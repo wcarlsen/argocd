@@ -1,0 +1,14 @@
+---
+ apiVersion: traefik.containo.us/v1alpha1
+ kind: IngressRoute
+ metadata:
+   name: traefik
+   namespace: traefik
+ spec:
+  routes:
+  - match: Host(`traefik.web.lan`)
+    kind: Rule
+    services:
+    - name: admin
+      port: 8080
+  tls: {}
