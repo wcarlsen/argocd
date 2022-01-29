@@ -13,3 +13,19 @@
        port: 443
    tls:
     passthrough: true
+
+---
+ apiVersion: traefik.containo.us/v1alpha1
+ kind: IngressRoute
+ metadata:
+   name: argocd
+   namespace: argocd
+ spec:
+   routes:
+   - match: Host(`argocd.web.lan`)
+     kind: Rule
+     services:
+     - name: argocd-server
+       port: 443
+   tls:
+    passthrough: true
