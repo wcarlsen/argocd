@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: smokeping
+  name: smokeping
+  namespace: smokeping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smokeping
+  template:
+    metadata:
+      labels:
+        app: smokeping
+      annotations:
+        # chaos.alpha.kubernetes.io/enabled: "true"
+    spec:
+      containers:
+      - image: ghcr.io/linuxserver/smokeping
+        name: smokeping
+        env:
+        - name: TZ
+          value: Europe/Copenhagen
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: data
+          mountPath: "/data"
+        - mountPath: "/config/Targets"
+          subPath: Targets
+          name: targets
+        - mountPath: "/config/Probes"
+          subPath: Probes
+          name: probes
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: smokeping
+      - name: targets
+        configMap:
+          name: smokeping
+          items:
+          - key: Targets
+            path: Targets
+      - name: probes
+        configMap:
+          name: smokeping
+          items:
+          - key: Probes
+            path: Probes
