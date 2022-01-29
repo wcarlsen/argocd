@@ -27,8 +27,8 @@ spec:
             - --api.insecure
             - --accessLog.format=json
             - --metrics.prometheus
-            - --entrypoints.web.address=:8000
-            - --entrypoints.websecure.address=:4443
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
             - --entrypoints.web.http.redirections.entrypoint.scheme=https
             - --entrypoints.web.http.redirections.entryPoint.to=websecure
             - --entrypoints.web.http.redirections.entrypoint.permanent=true
@@ -38,9 +38,9 @@ spec:
             # - --certificatesresolvers.default.acme.storage=/etc/traefik/acme.json
           ports:
             - name: web
-              containerPort: 8000
+              containerPort: 80
             - name: websecure
-              containerPort: 4443
+              containerPort: 443
             - name: admin
               containerPort: 8080
       #     volumeMounts:
