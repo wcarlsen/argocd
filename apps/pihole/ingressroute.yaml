@@ -2,13 +2,13 @@
  apiVersion: traefik.containo.us/v1alpha1
  kind: IngressRoute
  metadata:
-   name: smokeping
-   namespace: smokeping
+   name: pihole
+   namespace: pihole
  spec:
    routes:
-   - match: Host(`smokeping.local.web`)
+   - match: Host(`pihole.local.web`)
      kind: Rule
      services:
-     - name: smokeping
+     - name: pihole
        port: 80
    tls: {}

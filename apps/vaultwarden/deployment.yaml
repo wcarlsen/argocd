@@ -34,49 +34,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: vaultwarden
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: nginx
-  name: nginx
-  namespace: vaultwarden
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-      annotations:
-        chaos.alpha.kubernetes.io/enabled: "true"
-    spec:
-      containers:
-      - image: nginx:latest
-        name: nginx
-        ports:
-        - containerPort: 443
-          name: websecure
-        volumeMounts:
-        - mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
-          name: nginx
-        - name: certs
-          mountPath: "/etc/nginx/ssl"
-          readOnly: true
-      volumes:
-      - name: nginx
-        configMap:
-          name: nginx
-          items:
-          - key: nginx.conf
-            path: nginx.conf
-      - name: certs
-        secret:
-          secretName: nginx-certs
 
 ---
 apiVersion: batch/v1

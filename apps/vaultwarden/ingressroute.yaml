@@ -2,13 +2,13 @@
  apiVersion: traefik.containo.us/v1alpha1
  kind: IngressRoute
  metadata:
-   name: smokeping
-   namespace: smokeping
+   name: vaultwarden
+   namespace: vaultwarden
  spec:
    routes:
-   - match: Host(`smokeping.local.web`)
+   - match: Host(`vaultwarden.local.web`)
      kind: Rule
      services:
-     - name: smokeping
+     - name: vaultwarden
        port: 80
    tls: {}
