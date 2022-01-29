@@ -9,6 +9,6 @@
   - match: Host(`traefik.web.lan`)
     kind: Rule
     services:
-    - name: admin
+    - name: traefik
       port: 8080
   tls: {}
