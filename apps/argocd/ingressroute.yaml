@@ -7,7 +7,7 @@
  spec:
    routes:
    - match: Host(`argocd.web.lan`)
-     kind: Rule
+    #  kind: Rule
      services:
      - name: argocd-server
        port: 443
