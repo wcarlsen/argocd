@@ -13,39 +13,39 @@
 #    tls:
 #     passthrough: true
 
-# ---
-#  apiVersion: traefik.containo.us/v1alpha1
-#  kind: IngressRoute
-#  metadata:
-#    name: argocd
-#    namespace: argocd
-#  spec:
-#    routes:
-#    - match: Host(`argocd.web.lan`)
-#      kind: Rule
-#      services:
-#      - name: argocd-server
-#        port: 80
-
-
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: argocd-server
-  namespace: argocd
-spec:
-  routes:
-    - kind: Rule
-      match: Host(`argocd.web.lan`)
-      priority: 10
-      services:
-        - name: argocd-server
-          port: 80
-    - kind: Rule
-      match: Host(`argocd.web.lan`) && Headers(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 80
-          scheme: h2c
+ apiVersion: traefik.containo.us/v1alpha1
+ kind: IngressRoute
+ metadata:
+   name: argocd
+   namespace: argocd
+ spec:
+   routes:
+   - match: Host(`argocd.web.lan`)
+     kind: Rule
+     services:
+     - name: argocd-server
+       port: 80
+
+
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: argocd-server
+#   namespace: argocd
+# spec:
+#   routes:
+#     - kind: Rule
+#       match: Host(`argocd.web.lan`)
+#       priority: 10
+#       services:
+#         - name: argocd-server
+#           port: 80
+#     - kind: Rule
+#       match: Host(`argocd.web.lan`) && Headers(`Content-Type`, `application/grpc`)
+#       priority: 11
+#       services:
+#         - name: argocd-server
+#           port: 80
+#           scheme: h2c
