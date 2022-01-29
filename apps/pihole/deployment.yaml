@@ -55,6 +55,9 @@ spec:
         - mountPath: /etc/pihole/custom.list
           subPath: custom.list
           name: local-dns
+        - mountPath: /etc/dnsmasq.d/custom.list
+          subPath: custom-dns.conf
+          name: wildcard-dns
       volumes:
       - name: local-dns
         configMap:
@@ -62,3 +65,9 @@ spec:
           items:
           - key: custom.list
             path: custom.list
+       - name: wildcard-dns
+        configMap:
+          name: wildcard-dns
+          items:
+          - key: custom-dns.conf
+            path: custom-dns.conf
