@@ -6,9 +6,4 @@ metadata:
   namespace: pihole
 data:
   custom.list: |
-    192.168.1.30 k8s.local.lan
-    192.168.1.240 pihole.local.lan
-    192.168.1.166 proxmox.local.lan
-    192.168.1.124 server.local.lan
-    192.168.1.241 vaultwarden.local.lan
-    192.168.1.242 traefik.local.lan
+    192.168.1.242 local.lan

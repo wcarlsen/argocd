@@ -8,7 +8,7 @@
   #  entrypoints:
   #  - websecure
    routes:
-   - match: Host(`traefik.local.lan`)
+   - match: Host(`smokeping.local.lan`)
      kind: Rule
      services:
      - name: smokeping
