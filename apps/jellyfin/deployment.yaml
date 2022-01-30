@@ -25,8 +25,10 @@ spec:
         volumeMounts:
         - name: config
           mountPath: "/config"
-        - name: data
-          mountPath: "/data"
+        - name: movies
+          mountPath: "/data/movies"
+        - name: tvshows
+          mountPath: "/data/tvshows"
         env:
         - name: TZ
           value: Europe/Copenhagen
@@ -34,6 +36,9 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: jellyfin-config
-      - name: data
+      - name: movies
         persistentVolumeClaim:
-          claimName: jellyfin-data
+          claimName: jellyfin-movies
+      - name: tvshows
+        persistentVolumeClaim:
+          claimName: jellyfin-tvshows
