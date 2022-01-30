@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+  labels:
+    app: jellyfin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+      - name: jellyfin
+        image: linuxserver/jellyfin:latest
+        ports:
+        - name: web
+          containerPort: 8096
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+        - name: data
+          mountPath: "/data"
+        env:
+        - name: TZ
+          value: Europe/Copenhagen
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: jellyfin-config
+      - name: data
+        persistentVolumeClaim:
+          claimName: jellyfin-data

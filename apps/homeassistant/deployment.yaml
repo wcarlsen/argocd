@@ -1,37 +1,37 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: homeassistant
-  name: homeassistant
-  namespace: homeassistant
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: homeassistant
-  template:
-    metadata:
-      labels:
-        app: homeassistant
-      annotations:
-        chaos.alpha.kubernetes.io/enabled: "true"
-    spec:
-      hostNetwork: true
-      containers:
-      - image: ghcr.io/home-assistant/home-assistant:stable
-        name: homeassistant
-        env:
-        - name: TZ
-          value: Europe/Copenhagen
-        # ports:
-        # - containerPort: 80
-        #   name: web
-        volumeMounts:
-        - name: config
-          mountPath: "/config"
-      volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: homeassistant-config
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: homeassistant
+#   name: homeassistant
+#   namespace: homeassistant
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: homeassistant
+#   template:
+#     metadata:
+#       labels:
+#         app: homeassistant
+#       annotations:
+#         chaos.alpha.kubernetes.io/enabled: "true"
+#     spec:
+#       hostNetwork: true
+#       containers:
+#       - image: ghcr.io/home-assistant/home-assistant:stable
+#         name: homeassistant
+#         env:
+#         - name: TZ
+#           value: Europe/Copenhagen
+#         # ports:
+#         # - containerPort: 80
+#         #   name: web
+#         volumeMounts:
+#         - name: config
+#           mountPath: "/config"
+#       volumes:
+#       - name: config
+#         persistentVolumeClaim:
+#           claimName: homeassistant-config
