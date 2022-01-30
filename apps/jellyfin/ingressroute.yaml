@@ -9,6 +9,6 @@
   - match: Host(`jellyfin.web.lan`)
     kind: Rule
     services:
-    - name: pihole
+    - name: jellyfin
       port: 8096
   tls: {}
