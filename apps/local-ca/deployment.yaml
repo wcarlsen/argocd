@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: local-ca
+  name: local-ca
+  namespace: local-ca
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: local-ca
+  template:
+    metadata:
+      labels:
+        app: local-ca
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "true"
+    spec:
+      containers:
+        - image: wcarlsen/local-ca:latest
+          name: local-ca
+          ports:
+            - containerPort: 3001
+              name: web

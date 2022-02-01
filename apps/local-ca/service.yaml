@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-ca
+  namespace: local-ca
+spec:
+  type: ClusterIP
+  selector:
+    app: local-ca
+  ports:
+    - name: web
+      port: 3001
+      targetPort: 3001

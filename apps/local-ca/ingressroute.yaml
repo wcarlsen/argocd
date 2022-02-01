@@ -1,0 +1,14 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: local-ca
+  namespace: local-ca
+spec:
+  routes:
+    - match: Host(`ca.web.lan`)
+      kind: Rule
+      services:
+        - name: local-ca
+          port: 3001
+  tls: {}
