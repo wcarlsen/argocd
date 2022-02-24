@@ -7,9 +7,9 @@ metadata:
 data:
   custom.list: |
     192.168.1.30 k8s.server.lan
-    192.168.1.167 pihole.server.lan
+    192.168.1.240 pihole.server.lan
     192.168.1.166 proxmox.server.lan
-    192.168.1.124 server.server.lan
+    192.168.1.167 pivpn.server.lan
 
   custom-dns.conf: |
     address=/web.lan/192.168.1.242
