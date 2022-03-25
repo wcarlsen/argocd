@@ -22,7 +22,7 @@ spec:
           args:
             - server
             - /data
-            - --console-adress
+            - --console-address
             - ":9001"
           ports:
             - containerPort: 9000
