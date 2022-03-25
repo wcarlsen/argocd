@@ -10,7 +10,7 @@ spec:
     app: minio
   ports:
   - name: web
-    port: 9000
+    port: 9001
     targetPort: web
 
 ---
@@ -25,5 +25,5 @@ spec:
     app: minio
   ports:
   - name: api
-    port: 9001
+    port: 9000
     targetPort: api

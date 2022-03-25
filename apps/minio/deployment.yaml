@@ -25,9 +25,9 @@ spec:
             - --console-address
             - ":9001"
           ports:
-            - containerPort: 9000
-              name: web
             - containerPort: 9001
+              name: web
+            - containerPort: 9000
               name: api
           volumeMounts:
           - name: data

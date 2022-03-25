@@ -10,7 +10,7 @@
     kind: Rule
     services:
     - name: minio.web
-      port: 9000
+      port: 9001
   tls: {}
 
 ---
@@ -25,5 +25,5 @@
     kind: Rule
     services:
     - name: minio-api
-      port: 9001
+      port: 9000
   tls: {}
