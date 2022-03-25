@@ -1,0 +1,29 @@
+---
+ apiVersion: traefik.containo.us/v1alpha1
+ kind: IngressRoute
+ metadata:
+   name: minio-web
+   namespace: minio
+ spec:
+  routes:
+  - match: Host(`minio.web.lan`)
+    kind: Rule
+    services:
+    - name: minio.web
+      port: 9000
+  tls: {}
+
+---
+ apiVersion: traefik.containo.us/v1alpha1
+ kind: IngressRoute
+ metadata:
+   name: minio-api
+   namespace: minio
+ spec:
+  routes:
+  - match: Host(`minioapi.web.lan`)
+    kind: Rule
+    services:
+    - name: minio-api
+      port: 9001
+  tls: {}
