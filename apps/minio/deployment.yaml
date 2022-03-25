@@ -24,9 +24,9 @@ spec:
               name: web
             - containerPort: 9001
               name: api
-        volumeMounts:
-        - name: data
-          mountPath: "/data"
+          volumeMounts:
+          - name: data
+            mountPath: "/data"
       volumes:
       - name: data
         persistentVolumeClaim:
