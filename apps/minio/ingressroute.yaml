@@ -9,7 +9,7 @@
   - match: Host(`minio.web.lan`)
     kind: Rule
     services:
-    - name: minio.web
+    - name: minio-web
       port: 9001
   tls: {}
 
